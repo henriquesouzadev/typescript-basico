@@ -1,12 +1,12 @@
-function normalizar(valor: string): string
-function normalizar(valor: string[]): string[]
-function normalizar(valor: string | string[]): string | string[] {
+function arredondar(valor: string): string
+function arredondar(valor: number): number
+function arredondar(valor: number | string): number | string {
   if (typeof valor === 'string') {
-    return valor.trim().toLowerCase()
+    return `${Math.ceil(Number(valor))}`
   } else {
-    return valor.map(item => item.trim().toLowerCase())
+    return Math.ceil(valor)
   }
 }
 
-console.log(normalizar(' Produto').toUpperCase())
-console.log(normalizar([' Banana', 'Uva']))
+console.log(arredondar(204.43))
+console.log(arredondar('203.23'))

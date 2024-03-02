@@ -1,11 +1,11 @@
 "use strict";
-function normalizar(valor) {
+function arredondar(valor) {
     if (typeof valor === 'string') {
-        return valor.trim().toLowerCase();
+        return `${Math.ceil(Number(valor))}`;
     }
     else {
-        return valor.map(item => item.trim().toLowerCase());
+        return Math.ceil(valor);
     }
 }
-console.log(normalizar(' Produto').toUpperCase());
-console.log(normalizar([' Banana', 'Uva']));
+console.log(arredondar(204.43));
+console.log(arredondar('203.23'));
