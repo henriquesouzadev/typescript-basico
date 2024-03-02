@@ -1,8 +1,16 @@
-const numeros = [1, 2, 3, 4, 5, 6, 7]
-const frutas = ['maça', 'uva', 'pêra', 'laranja', 'limão']
-
-function firstFive<T>(lista: T[]): T[] {
-  return lista.slice(0, 5)
+async function getData<T>(url: string): Promise<T> {
+  const response = await fetch(url)
+  return await response.json()
 }
 
-console.log(firstFive(numeros))
+interface Notebook {
+  nome: string;
+  preco: number;
+}
+
+async function handleData() {
+  const notebook = await getData<Notebook>('https://api.origamid.dev/json/notebook.json')
+  console.log(notebook.nome)
+}
+
+handleData()
