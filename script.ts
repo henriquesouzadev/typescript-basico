@@ -1,16 +1,12 @@
-async function getData<T>(url: string): Promise<T> {
-  const response = await fetch(url)
-  return await response.json()
+function normalizar(valor: string): string
+function normalizar(valor: string[]): string[]
+function normalizar(valor: string | string[]): string | string[] {
+  if (typeof valor === 'string') {
+    return valor.trim().toLowerCase()
+  } else {
+    return valor.map(item => item.trim().toLowerCase())
+  }
 }
 
-interface Notebook {
-  nome: string;
-  preco: number;
-}
-
-async function handleData() {
-  const notebook = await getData<Notebook>('https://api.origamid.dev/json/notebook.json')
-  console.log(notebook.nome)
-}
-
-handleData()
+console.log(normalizar(' Produto').toUpperCase())
+console.log(normalizar([' Banana', 'Uva']))
