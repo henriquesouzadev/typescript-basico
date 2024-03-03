@@ -1,11 +1,7 @@
 "use strict";
-function arredondar(valor) {
-    if (typeof valor === 'string') {
-        return `${Math.ceil(Number(valor))}`;
-    }
-    else {
-        return Math.ceil(valor);
-    }
+const obj = {
+    nome: 'Origamid'
+};
+if ('nome' in obj) {
+    console.log('sim');
 }
-console.log(arredondar(204.43));
-console.log(arredondar('203.23'));
