@@ -1,12 +1,14 @@
 "use strict";
-/**
- * Diferente do "any" o "unknown" não deixa ativar qualquer método ou propriedade de um valor,
- * somente quando tiver a type safety
- */
-function typeGuard(value) {
-    if (typeof value === 'string') {
-        return value.toUpperCase();
+function isProduto(value) {
+    if (value) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
-typeGuard(200);
-typeGuard('Teste');
+function handleProduto(data) {
+    if (isProduto(data)) {
+        console.log(data);
+    }
+}

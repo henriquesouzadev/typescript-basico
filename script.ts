@@ -1,12 +1,18 @@
-/**
- * Diferente do "any" o "unknown" não deixa ativar qualquer método ou propriedade de um valor,
- * somente quando tiver a type safety
- */
-function typeGuard(value: unknown) {
-  if (typeof value === 'string') {
-    return value.toUpperCase()
+interface Produto {
+  nome: string;
+  preco: number;
+}
+
+function isProduto(value: unknown): value is Produto {
+  if (value) {
+    return true
+  } else {
+    return false
   }
 }
 
-typeGuard(200)
-typeGuard('Teste')
+function handleProduto(data: unknown) {
+  if (isProduto(data)) {
+    console.log(data)
+  }
+}
