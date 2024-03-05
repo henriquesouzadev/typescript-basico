@@ -1,18 +1,38 @@
-interface Produto {
+interface InterfaceCurso {
   nome: string;
-  preco: number;
+  aulas: number;
+  gratuito: boolean;
+  horas: number;
+  idAulas: number[];
+  nivel: "iniciante" | "avancado";
+  tags: string[];
 }
 
-function isProduto(value: unknown): value is Produto {
-  if (value) {
+function isCurso(value: unknown): value is InterfaceCurso {
+  if (value && typeof value === 'object' && 'nome' in value && 'horas' in value && 'tags' in value) {
     return true
   } else {
     return false
   }
 }
 
-function handleProduto(data: unknown) {
-  if (isProduto(data)) {
-    console.log(data)
+function handleCursos(data: unknown) {
+  if (data instanceof Array) {
+    data.filter(isCurso).forEach(item => {
+      document.body.innerHTML += `
+        <div>
+          <h2>${item.nome}</h2>
+          <p>${item.horas}</p>
+        </div>
+      `
+    })
   }
 }
+
+async function fetchCursos() {
+  const response = await fetch('https://api.origamid.dev/json/cursos.json')
+  const json = await response.json()
+  handleCursos(json)
+}
+
+fetchCursos()
