@@ -1,27 +1,12 @@
-const { body }: { body: HTMLElement } = document
+function comparar(tipo: "maior" | "menor", ...numeros: number[]) {
+  if (tipo === 'menor') {
+    return Math.min(...numeros)
+  }
 
-interface Produto {
-  nome: string;
-  preco?: number;
-}
-
-function handleData({ nome, preco }: Produto) {
-  nome.includes('book')
-  preco?.toFixed()
-}
-
-handleData({
-  nome: 'Notebook'
-})
-
-
-
-
-function handleClick({ currentTarget, pageX }: { currentTarget: EventTarget | null; pageX: number }) {
-  if (currentTarget instanceof HTMLElement) {
-    console.log(currentTarget)
-    currentTarget.innerHTML = `<h1>Mouse click em x: ${pageX}</h1>`
+  if (tipo === 'maior') {
+    return Math.max(...numeros)
   }
 }
 
-document.documentElement.addEventListener('click', handleClick)
+console.log(comparar('maior', 1, 5, 10, 14, 21))
+console.log(comparar('menor', 1, 5, 10, 14, 21))

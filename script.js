@@ -1,16 +1,11 @@
 "use strict";
-const { body } = document;
-function handleData({ nome, preco }) {
-    nome.includes('book');
-    preco === null || preco === void 0 ? void 0 : preco.toFixed();
-}
-handleData({
-    nome: 'Notebook'
-});
-function handleClick({ currentTarget, pageX }) {
-    if (currentTarget instanceof HTMLElement) {
-        console.log(currentTarget);
-        currentTarget.innerHTML = `<h1>Mouse click em x: ${pageX}</h1>`;
+function comparar(tipo, ...numeros) {
+    if (tipo === 'menor') {
+        return Math.min(...numeros);
+    }
+    if (tipo === 'maior') {
+        return Math.max(...numeros);
     }
 }
-document.documentElement.addEventListener('click', handleClick);
+console.log(comparar('maior', 1, 5, 10, 14, 21));
+console.log(comparar('menor', 1, 5, 10, 14, 21));
