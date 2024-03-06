@@ -8,31 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-function isCurso(value) {
-    if (value && typeof value === 'object' && 'nome' in value && 'horas' in value && 'tags' in value) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-function handleCursos(data) {
-    if (data instanceof Array) {
-        data.filter(isCurso).forEach(item => {
-            document.body.innerHTML += `
-        <div>
-          <h2>${item.nome}</h2>
-          <p>${item.horas}</p>
-        </div>
-      `;
-        });
-    }
-}
-function fetchCursos() {
+function fetchProduto() {
     return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch('https://api.origamid.dev/json/cursos.json');
+        const response = yield fetch('https://api.origamid.dev/json/notebook.json');
         const json = yield response.json();
-        handleCursos(json);
+        return json;
     });
 }
-fetchCursos();
+function handleProduto() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const produto = yield fetchProduto();
+        console.log(produto.nome);
+    });
+}
+handleProduto();
