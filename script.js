@@ -1,24 +1,16 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-function fetchProduto() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch('https://api.origamid.dev/json/notebook.json');
-        const json = yield response.json();
-        return json;
-    });
+const { body } = document;
+function handleData({ nome, preco }) {
+    nome.includes('book');
+    preco === null || preco === void 0 ? void 0 : preco.toFixed();
 }
-function handleProduto() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const produto = yield fetchProduto();
-        console.log(produto.nome);
-    });
+handleData({
+    nome: 'Notebook'
+});
+function handleClick({ currentTarget, pageX }) {
+    if (currentTarget instanceof HTMLElement) {
+        console.log(currentTarget);
+        currentTarget.innerHTML = `<h1>Mouse click em x: ${pageX}</h1>`;
+    }
 }
-handleProduto();
+document.documentElement.addEventListener('click', handleClick);

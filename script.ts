@@ -1,17 +1,27 @@
+const { body }: { body: HTMLElement } = document
+
 interface Produto {
   nome: string;
-  preco: number;
+  preco?: number;
 }
 
-async function fetchProduto() {
-  const response = await fetch('https://api.origamid.dev/json/notebook.json')
-  const json = await response.json() as Promise<Produto>
-  return json
+function handleData({ nome, preco }: Produto) {
+  nome.includes('book')
+  preco?.toFixed()
 }
 
-async function handleProduto() {
-  const produto = await fetchProduto()
-  console.log(produto.nome)
+handleData({
+  nome: 'Notebook'
+})
+
+
+
+
+function handleClick({ currentTarget, pageX }: { currentTarget: EventTarget | null; pageX: number }) {
+  if (currentTarget instanceof HTMLElement) {
+    console.log(currentTarget)
+    currentTarget.innerHTML = `<h1>Mouse click em x: ${pageX}</h1>`
+  }
 }
 
-handleProduto()
+document.documentElement.addEventListener('click', handleClick)
