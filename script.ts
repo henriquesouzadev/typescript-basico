@@ -1,12 +1,46 @@
-function comparar(tipo: "maior" | "menor", ...numeros: number[]) {
-  if (tipo === 'menor') {
-    return Math.min(...numeros)
-  }
-
-  if (tipo === 'maior') {
-    return Math.max(...numeros)
-  }
+type Produto = {
+  preco: number;
 }
 
-console.log(comparar('maior', 1, 5, 10, 14, 21))
-console.log(comparar('menor', 1, 5, 10, 14, 21))
+type Carro = {
+  rodas: number;
+  portas: number;
+}
+
+type Livro = {
+  paginas: number;
+}
+
+function handleProdutoCarro(dados: Produto & Carro) {
+  dados.rodas
+  dados.portas
+  dados.preco
+}
+
+handleProdutoCarro({ rodas: 4, portas: 5, preco: 30000 })
+
+type TipoCarro = {
+  rodas: number;
+  portas: number;
+}
+
+type TipoCarroComPreco = TipoCarro & {
+  preco: number;
+}
+
+interface InterfaceCarro {
+  rodas: number;
+  portas: number;
+}
+
+interface InterfaceCarro {
+  preco: number;
+}
+
+function handleInterfaceCarro(carro: InterfaceCarro) {}
+
+interface Window {
+  userId: number;
+}
+
+window.userId = 200
