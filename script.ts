@@ -1,26 +1,28 @@
-const produto1 = ['Notebook', 2500]
-const produto2: [string, number] = ['Notebook', 2500]
+// 1 - Faça um fetch das vendas: https://api.origamid.dev/json/vendas.json
+// 2 - Defina o tipo/interface de cada venda (tuple)
+// 3 - Some o total das vendas e mostre na tela
 
-if (typeof produto1[0] === 'string') {
-  console.log(produto1[0].toLowerCase())
+interface ProdutoDetalhes {
+  marca: string;
+  cor: string;
 }
 
-const [nome, preco] = produto2
+type Venda = [string, number, string, ProdutoDetalhes]
 
-function getText(selector: string) {
-  const el = document.querySelector<HTMLElement>(selector)
+function somarVendas(vendas: Venda[]) {
+  const total = vendas.reduce((total, venda) => {
+    return total + venda[1]
+  }, 0)
 
-  if (el) {
-    return [el, el.innerText] as const
-  } else {
-    return null
-  }
+  document.body.innerHTML += `<p>Total: ${total}</p>`
 }
 
-const button = getText('button')
+async function getVendas() {
+  const response = await fetch('https://api.origamid.dev/json/vendas.json')
+  const json = await response.json()
 
-if (button) {
-  button[0]
+  somarVendas(json)
 }
 
-console.log(button)
+getVendas()
+
