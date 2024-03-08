@@ -1,72 +1,76 @@
-// 1 - Crie uma interface UserData para o formulário abaixo
-// 2 - Crie uma variável global UserData no window, ela será um objeto qualquer
-// 3 - Adicione um evento de keyup ao formulário
-// 4 - Quando o evento ocorrer adicione a {[id]: value} ao UserData
-// 5 - Salve UserData no localStorage
-// 6 - Crie uma User Type Guard, para verificar se o valor de localStorage é compatível com UserData
-// 7 - Ao refresh da página, preencha os valores de localStorage (caso seja UserData) no formulário e em window.UserData
+console.log(document.constructor)
 
-interface UserData {
-  nome?: string;
-  email?: string;
-  cpf?: string;
+class Produto {
+  // public: é o padrão para qualquer uma
+  // private: só pode ser acessada dentro da classe
+  // protected: só pode ser acessada dentro da classe e da subclasse
+  readonly tipo = 'produto'
+  nome: string
+  private preco: number 
+
+  constructor(nome: string, preco: number) {
+    this.nome = nome
+    this.preco = preco
+  }
+
+  getPreco() {
+    return Produto.transformarPreco(this.preco)
+  }
+
+  static transformarPreco(preco: number) {
+    return `R$ ${preco}`
+  }
 }
 
-interface Window {
-  userData: any;
+const livro = new Produto('O Senhor dos Anéis', 300)
+
+console.log(livro.getPreco())
+
+class Quadrado {
+  readonly lados = 4
+  medida: number
+
+  constructor(medida: number) {
+    this.medida = medida
+  }
+
+  getPerimetro() {
+    return this.medida * this.lados
+  }
+  getArea() {
+    return this.medida * this.medida
+  }
 }
 
-window.userData = {}
+class Circulo {
+  readonly PI = Math.PI
+  raio: number
 
-function isUserData(obj: unknown): obj is UserData {
-  if (
-    obj &&
-    typeof obj === 'object' &&
-    ('nome' in obj || 'email' in obj || 'cpf' in obj)
-  ) {
-    return true
+  constructor(raio: number) {
+    this.raio = raio
+  }
+
+  getPerimetro() {
+    return Math.round(2 * this.PI * this.raio * 100) / 100
+  }
+  getArea() {
+    return Math.round(this.PI * (this.raio * this.raio) * 100) / 100
+  }
+}
+
+const formas = [2, 32, 12, 3, 4, 20, 37, 9].map((n) => {
+  if (n < 15) {
+    return new Quadrado(n)
   } else {
-    return false
+    return new Circulo(n)
   }
-}
+})
 
-function validJson(string: string) {
-  try {
-    JSON.parse(string)
-  } catch (error) {
-    return false
+formas.forEach((forma) => {
+  if (forma instanceof Quadrado) {
+    console.log(forma.getArea())
   }
-
-  return true
-}
-
-function loadLocalStorage() {
-  const localUserData = localStorage.getItem('userData')
-
-  if (localUserData && validJson(localUserData)) {
-    const userData = JSON.parse(localUserData)
-
-    if (isUserData(userData)) {
-      Object.entries(userData).forEach(([key, value]) => {
-        const input = document.getElementById(key)
-
-        if (input instanceof HTMLInputElement) {
-          input.value = value
-          window.userData[key] = value
-        }
-      })
-    }
+  if (forma instanceof Circulo) {
+    console.log(forma.getPerimetro())
   }
-}
-
-loadLocalStorage()
-
-function handleInput({ target }: KeyboardEvent) {
-  if (target instanceof HTMLInputElement) {
-    window.userData[target.id] = target.value
-    localStorage.setItem('userData', JSON.stringify(window.userData))
-  }
-}
-
-const form = document.querySelector<HTMLElement>('#form')
-form?.addEventListener('keyup', handleInput)
+}) 
