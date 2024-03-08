@@ -1,15 +1,5 @@
 "use strict";
-const artigo = {
-    titulo: 'Teste',
-    visualizacoes: 30000,
-    tags: ['html', 'js'],
-    autor: 'Andre'
+const livro = {
+    nome: 'Senhor dos Aneis',
+    preco: 30
 };
-function mostrarTitulo(obj) {
-    if ('titulo' in obj) {
-        console.log(obj.titulo);
-    }
-}
-mostrarTitulo({
-    titulo: 'teste',
-});
