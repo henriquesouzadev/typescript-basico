@@ -1,7 +1,7 @@
 "use strict";
 const artigo = {
     titulo: 'Teste',
-    visualizacoes: 3000,
+    visualizacoes: 30000,
     tags: ['html', 'js'],
     autor: 'Andre'
 };
