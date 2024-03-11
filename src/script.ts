@@ -16,6 +16,7 @@ function preencherLista(lista: CountList, containerId: string): void {
 
 function preencherEstatisticas(transacoes: Transacao[]): void {
   const data = new Estatisticas(transacoes)
+  console.log(data)
 
   preencherLista(data.pagamento, 'pagamento')
   preencherLista(data.status, 'status')
@@ -28,7 +29,10 @@ function preencherEstatisticas(transacoes: Transacao[]): void {
     })
   }
 
-  
+  const diaElement = document.querySelector<HTMLElement>("#dia span")
+  if (diaElement) {
+    diaElement.innerText = data.melhorDia[0]
+  }
 }
 
 function preencherTabela(transacoes: Transacao[]): void {
