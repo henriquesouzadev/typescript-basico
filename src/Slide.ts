@@ -57,7 +57,8 @@ export class Slide {
   pause() {
     console.log('pause')
     this.pausedTimeout = new Timeout(() => {
-     this.paused = true 
+      this.timeout?.pause()
+      this.paused = true 
     }, 300)
   }
 
@@ -67,7 +68,7 @@ export class Slide {
 
     if (this.paused) {
       this.paused = false
-      this.auto(this.time)
+      this.timeout?.continue()
     }
   }
 
