@@ -11,13 +11,13 @@ function filtrarValor(transacao: Transacao): transacao is TransacaoValor {
 export class Estatisticas {
   private transacoes;
   total;
-  pagamentos;
+  pagamento;
   status;
 
   constructor(transacoes: Transacao[]) {
     this.transacoes = transacoes;
     this.total = this.setTotal();
-    this.pagamentos = this.setPagamentos();
+    this.pagamento = this.setPagamentos();
     this.status = this.setStatus();
   }
 

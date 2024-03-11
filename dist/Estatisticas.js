@@ -5,12 +5,12 @@ function filtrarValor(transacao) {
 export class Estatisticas {
     transacoes;
     total;
-    pagamentos;
+    pagamento;
     status;
     constructor(transacoes) {
         this.transacoes = transacoes;
         this.total = this.setTotal();
-        this.pagamentos = this.setPagamentos();
+        this.pagamento = this.setPagamentos();
         this.status = this.setStatus();
     }
     setTotal() {

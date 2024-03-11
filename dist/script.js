@@ -1,9 +1,19 @@
 import { Estatisticas } from "./Estatisticas.js";
 import fetchData from "./fetchData.js";
 import { normalizarTransacao } from "./normalizarTransacao.js";
+function preencherLista(lista, containerId) {
+    const containerElement = document.getElementById(containerId);
+    if (containerElement) {
+        const keys = Object.keys(lista);
+        keys.forEach(key => {
+            containerElement.innerHTML += `<p>${key}: ${lista[key]}</p>`;
+        });
+    }
+}
 function preencherEstatisticas(transacoes) {
     const data = new Estatisticas(transacoes);
-    console.log(data.status);
+    preencherLista(data.pagamento, 'pagamento');
+    preencherLista(data.status, 'status');
     const totalElement = document.querySelector("#total span");
     if (totalElement) {
         totalElement.innerText = data.total.toLocaleString("pt-BR", {
