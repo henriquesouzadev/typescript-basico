@@ -4,7 +4,8 @@ import { normalizarTransacao } from "./normalizarTransacao.js";
 
 function preencherEstatisticas(transacoes: Transacao[]): void {
   const data = new Estatisticas(transacoes)
-  console.log(data.total)
+
+  console.log(data.status)
 
   const totalElement = document.querySelector<HTMLElement>("#total span")
 
@@ -38,7 +39,6 @@ async function handleData() {
   if (!data) return
 
   const transacoes = data.map(normalizarTransacao)
-  console.log(transacoes)
 
   preencherTabela(transacoes)
   preencherEstatisticas(transacoes)

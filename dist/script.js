@@ -3,7 +3,7 @@ import fetchData from "./fetchData.js";
 import { normalizarTransacao } from "./normalizarTransacao.js";
 function preencherEstatisticas(transacoes) {
     const data = new Estatisticas(transacoes);
-    console.log(data.total);
+    console.log(data.status);
     const totalElement = document.querySelector("#total span");
     if (totalElement) {
         totalElement.innerText = data.total.toLocaleString("pt-BR", {
@@ -33,7 +33,6 @@ async function handleData() {
     if (!data)
         return;
     const transacoes = data.map(normalizarTransacao);
-    console.log(transacoes);
     preencherTabela(transacoes);
     preencherEstatisticas(transacoes);
 }

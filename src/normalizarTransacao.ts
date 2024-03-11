@@ -13,7 +13,7 @@ declare global {
     Status: TransacaoStatus;
     Email: string;
     ['Valor (R$)']: string;
-    ['Forma de pagamento']: TransacaoPagamento; 
+    ['Forma de Pagamento']: TransacaoPagamento; 
     ['Cliente Novo']: number;
   }
 
@@ -39,7 +39,7 @@ export function normalizarTransacao(transacao: TransacaoAPI): Transacao {
     email: transacao.Email,
     moeda: transacao['Valor (R$)'],
     valor: moedaParaNumero(transacao['Valor (R$)']),
-    pagamento: transacao['Forma de pagamento'],
+    pagamento: transacao['Forma de Pagamento'],
     novo: Boolean(transacao['Cliente Novo'])
   }
 }
